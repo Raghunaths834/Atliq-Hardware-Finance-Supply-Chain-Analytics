@@ -7,12 +7,12 @@ Welcome to the Atliq Hardware Analytics Project! This project is designed to tra
 
 By harnessing the power of data-driven insights, Atliq Hardware aims to revolutionize its decision-making process. These insights not only identify emerging patterns and trends but also empower the company to make strategic moves aligned with market demands and consumer preferences. This data-centric strategy forms a virtuous cycle, ensuring decisions are grounded in empirical evidence, minimizing risks, and maximizing opportunities.
 
-**Atliq Business Model**
+## Atliq Business Model
 
 
 Atliq operates in the hardware industry, selling gadgets to various customers like Croma, BestBuy, Amazon, Staples, Flipkart, etc. Customers, in this context, refer to direct customers of Atliq, while consumers are the end users who consume the products. Atliq has a manufacturing unit and distributes its hardware gadgets to different customers across various countries. The company utilizes two types of platforms and three channels (Retailer, Direct, Distributors) for product sales.
 
-**Profit & Loss Analysis**
+## Profit & Loss Analysis
 
 
 Let's delve into the profit and loss analysis of Atliq Hardware using an example:
@@ -32,7 +32,7 @@ Let's delve into the profit and loss analysis of Atliq Hardware using an example
  * Atliq's profit margin is determined as a percentage of Net Sales.
 
 
-**Database Structure**
+## Database Structure
 
 
 The comprehensive infrastructure of the Atliq Hardware initiative encompasses a multi-faceted framework, incorporating essential components such as Customer, Products, Sales, pre and post-invoice deductions, and manufacturing tables. Key tables include:
@@ -55,10 +55,10 @@ The comprehensive infrastructure of the Atliq Hardware initiative encompasses a 
 
 * fact_sales_monthly: Summarizes monthly sales transaction information.
 
-**Fiscal Year and Project Management**
+## Fiscal Year and Project Management
 Atliq initiates its business/financial year in September, aligning with high sales and the festive season lasting from September to December. The project employs the Kanban methodology for project management, a prominent approach within agile development. JIRA serves as the Kanban cockpit, allowing efficient navigation of tasks, deadlines, and project progress.
 
-**Problem Statements and Solutions**
+## Problem Statements and Solutions
 
 
 The project addresses various problem statements, including generating sales reports, preparing financial statements, and creating visualizations. Solutions involve SQL queries, user-defined functions, stored procedures, and views. Key problem statements include:
@@ -79,5 +79,5 @@ The project addresses various problem statements, including generating sales rep
 
 8. Top N Products in Each Division by Quantity Sold: Use dense rank function to get the top N products in each division by quantity sold.
 
-**Conclusion**
+## Conclusion
 The Atliq Hardware Analytics Project aims to provide comprehensive insights into the company's operational and financial performance. Leveraging a data-centric approach, the project facilitates informed decision-making, optimizing strategies, and fostering continuous improvement. The structured database and analytical methodologies ensure a thorough understanding of customer behavior, product trends, and market dynamics, contributing to the overall success of Atliq Hardware.
