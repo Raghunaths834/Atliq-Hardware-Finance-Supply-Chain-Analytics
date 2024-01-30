@@ -18,7 +18,7 @@ Atliq operates in the hardware industry, selling gadgets to various customers li
 
 Let's delve into the profit and loss analysis of Atliq Hardware using an example:
 
- *Atliq sells a mouse to Croma for $30.
+ "*"Atliq sells a mouse to Croma for $30.
 
  *A pre-invoice deduction of $2 is applied, resulting in a Net Invoice Sales of $28.
 
