@@ -46,7 +46,7 @@ The comprehensive infrastructure of the Atliq Hardware initiative encompasses a 
 
 * fact_freight_cost: Provides information about Atliq’s transportation costs.
 
-*fact_gross_price: Describes the gross price for each unique product.
+* fact_gross_price: Describes the gross price for each unique product.
 
 * fact_manufacturing_cost: Contains data related to the COGS amount.
 
