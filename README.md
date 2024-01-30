@@ -1,7 +1,7 @@
 # Atliq-Hardware-Finance-Supply-Chain-Analytics-Using-MySQL
 
 
-##**Overview**
+##Overview
 
 
 Welcome to the Atliq Hardware Analytics Project! This project is designed to transform Atliq Hardware’s operational landscape by establishing a robust framework for generating actionable insights. The insights are derived from a comprehensive analysis of key data sources, including customer behavior, transaction history, product trends, and regional dynamics.
