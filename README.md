@@ -18,19 +18,19 @@ Atliq operates in the hardware industry, selling gadgets to various customers li
 
 Let's delve into the profit and loss analysis of Atliq Hardware using an example:
 
-*Atliq sells a mouse to Croma for $30.
+ *Atliq sells a mouse to Croma for $30.
 
-*A pre-invoice deduction of $2 is applied, resulting in a Net Invoice Sales of $28.
+ *A pre-invoice deduction of $2 is applied, resulting in a Net Invoice Sales of $28.
 
-*Croma offers promotional discounts to consumers, facilitated by Atliq.
+ *Croma offers promotional discounts to consumers, facilitated by Atliq.
 
-*Various post-invoice deductions, such as festival sales discounts, platform fees, and performance rebates, are applied to the Net Invoice Sales.
+ *Various post-invoice deductions, such as festival sales discounts, platform fees, and performance rebates, are applied to the Net Invoice Sales.
 
-*The final Net Sales are obtained by deducting the post-invoice deduction amount from Net Invoice Sales.
+ *The final Net Sales are obtained by deducting the post-invoice deduction amount from Net Invoice Sales.
 
-*The Cost of Goods Sold (COGS), including manufacturing cost, freight cost, and other expenses, is deducted from Net Sales to calculate Gross Margin.
+ *The Cost of Goods Sold (COGS), including manufacturing cost, freight cost, and other expenses, is deducted from Net Sales to calculate Gross Margin.
 
-*Atliq's profit margin is determined as a percentage of Net Sales.
+ *Atliq's profit margin is determined as a percentage of Net Sales.
 
 
 **Database Structure**
