@@ -20,17 +20,17 @@ Let's delve into the profit and loss analysis of Atliq Hardware using an example
 
  * Atliq sells a mouse to Croma for $30.
 
- *A pre-invoice deduction of $2 is applied, resulting in a Net Invoice Sales of $28.
+ * A pre-invoice deduction of $2 is applied, resulting in a Net Invoice Sales of $28.
 
- *Croma offers promotional discounts to consumers, facilitated by Atliq.
+ * Croma offers promotional discounts to consumers, facilitated by Atliq.
 
- *Various post-invoice deductions, such as festival sales discounts, platform fees, and performance rebates, are applied to the Net Invoice Sales.
+ * Various post-invoice deductions, such as festival sales discounts, platform fees, and performance rebates, are applied to the Net Invoice Sales.
 
- *The final Net Sales are obtained by deducting the post-invoice deduction amount from Net Invoice Sales.
+ * The final Net Sales are obtained by deducting the post-invoice deduction amount from Net Invoice Sales.
 
- *The Cost of Goods Sold (COGS), including manufacturing cost, freight cost, and other expenses, is deducted from Net Sales to calculate Gross Margin.
+ * The Cost of Goods Sold (COGS), including manufacturing cost, freight cost, and other expenses, is deducted from Net Sales to calculate Gross Margin.
 
- *Atliq's profit margin is determined as a percentage of Net Sales.
+ * Atliq's profit margin is determined as a percentage of Net Sales.
 
 
 **Database Structure**
@@ -38,23 +38,23 @@ Let's delve into the profit and loss analysis of Atliq Hardware using an example
 
 The comprehensive infrastructure of the Atliq Hardware initiative encompasses a multi-faceted framework, incorporating essential components such as Customer, Products, Sales, pre and post-invoice deductions, and manufacturing tables. Key tables include:
 
-*dim_customer: Stores information about customers.
+* dim_customer: Stores information about customers.
 
-*dim_product: Contains details about the products offered by Atliq Hardware.
+* dim_product: Contains details about the products offered by Atliq Hardware.
 
-*fact_forecast_monthly: Describes Atliq’s monthly sales prediction information.
+* fact_forecast_monthly: Describes Atliq’s monthly sales prediction information.
 
-*fact_freight_cost: Provides information about Atliq’s transportation costs.
+* fact_freight_cost: Provides information about Atliq’s transportation costs.
 
 *fact_gross_price: Describes the gross price for each unique product.
 
-*fact_manufacturing_cost: Contains data related to the COGS amount.
+* fact_manufacturing_cost: Contains data related to the COGS amount.
 
-*fact_post_invoice_deductions: Describes post-invoice deduction information.
+* fact_post_invoice_deductions: Describes post-invoice deduction information.
 
-*fact_pre_invoice_deductions: Contains pre-invoice deduction amount.
+* fact_pre_invoice_deductions: Contains pre-invoice deduction amount.
 
-*fact_sales_monthly: Summarizes monthly sales transaction information.
+* fact_sales_monthly: Summarizes monthly sales transaction information.
 
 **Fiscal Year and Project Management**
 Atliq initiates its business/financial year in September, aligning with high sales and the festive season lasting from September to December. The project employs the Kanban methodology for project management, a prominent approach within agile development. JIRA serves as the Kanban cockpit, allowing efficient navigation of tasks, deadlines, and project progress.
