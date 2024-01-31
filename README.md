@@ -34,6 +34,7 @@ Let's delve into the profit and loss analysis of Atliq Hardware using an example
 
 ## Database Structure
 
+![Uploading image.png…]()
 
 The comprehensive infrastructure of the Atliq Hardware initiative encompasses a multi-faceted framework, incorporating essential components such as Customer, Products, Sales, pre and post-invoice deductions, and manufacturing tables. Key tables include:
 
