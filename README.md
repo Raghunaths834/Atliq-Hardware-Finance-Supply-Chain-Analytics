@@ -34,7 +34,8 @@ Let's delve into the profit and loss analysis of Atliq Hardware using an example
 
 ## Database Structure
 
-![Uploading image.png…]()
+
+![1_Sb7W97tpW3NvscggmKqWLA](https://github.com/sahooraghunath/Atliq-Hardware-Finance-Supply-Chain-Analytics-Using-MySQL/assets/119792506/87b97ea4-2542-46d6-b1e6-338d916c7529)
 
 The comprehensive infrastructure of the Atliq Hardware initiative encompasses a multi-faceted framework, incorporating essential components such as Customer, Products, Sales, pre and post-invoice deductions, and manufacturing tables. Key tables include:
 
