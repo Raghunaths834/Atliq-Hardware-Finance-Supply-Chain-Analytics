@@ -46,10 +46,15 @@ The comprehensive infrastructure of the Atliq Hardware initiative encompasses a 
 ## Fiscal Year and Project Management
 Atliq initiates its business/financial year in September, aligning with high sales and the festive season lasting from September to December. The project employs the Kanban methodology for project management, a prominent approach within agile development. JIRA serves as the Kanban cockpit, allowing efficient navigation of tasks, deadlines, and project progress.
 
-## Problem Statements and Solutions
+## Problem Statements
 
 
-The project addresses various problem statements, including generating sales reports, preparing financial statements, and creating visualizations. Solutions involve SQL queries, user-defined functions, stored procedures, and views. Key problem statements include:
+The project addresses various problem statements, including generating sales reports, preparing financial statements, and creating visualizations,creating user define function,creating stored procedures to automate the process. 
+
+# Task
+
+
+### Finance Analytics:
 
 1. Individual Product Sales Report for CROMA India Customer (FY=2021): Generate a report of individual product sales aggregated on a monthly basis.
    
@@ -71,13 +76,18 @@ The project addresses various problem statements, including generating sales rep
        
 6. Market Badge Determination: Create a stored procedure to determine the market badge (Gold or Silver) based on the total sold quantity.
 
-7. Top and Bottom 5 Reports: Generate reports on the top and bottom 5 markets, products, and customers by net sales.
+## Top Customers, Products, Markets:
 
-8. Bar Chart for Top 10 Markets (% Net Sales): Prepare a bar chart report for FY=2021 for the top 10 markets by % net sales.
+1. Top and Bottom 5 Reports: Generate reports on the top and bottom 5 markets, products, and customers by net sales.
 
-9. Pie Chart for Net Sales% Breakdown by Region: Create a pie chart for the net sales% breakdown of customers region-wise (APAC, EU, LTAM).
+2. Bar Chart for Top 10 Markets (% Net Sales): Prepare a bar chart report for FY=2021 for the top 10 markets by % net sales.
 
-10. Top N Products in Each Division by Quantity Sold: Use dense rank function to get the top N products in each division by quantity sold.
+3. Pie Chart for Net Sales% Breakdown by Region: Create a pie chart for the net sales% breakdown of customers region-wise (APAC, EU, LTAM).
 
+4. Top N Products in Each Division by Quantity Sold: Use dense rank function to get the top N products in each division by quantity sold.
+
+## Supply Chain Analytics:
+1. Forecast Accuracy Report
+2. Get the customers for which forecast accuracy has dropped from 2020 to 2021
 ## Conclusion
 The Atliq Hardware Analytics Project aims to provide comprehensive insights into the company's operational and financial performance. Leveraging a data-centric approach, the project facilitates informed decision-making, optimizing strategies, and fostering continuous improvement. The structured database and analytical methodologies ensure a thorough understanding of customer behavior, product trends, and market dynamics, contributing to the overall success of Atliq Hardware.
