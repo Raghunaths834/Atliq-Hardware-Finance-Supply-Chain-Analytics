@@ -1,0 +1,354 @@
+SELECT s.date, p.product_code, p.product,p.variant,s.sold_quantity , g.gross_price
+FROM gdb0041.fact_sales_monthly s 
+join dim_product p 
+on p.product_code = s.product_code
+join fact_gross_price g 
+on
+  g.product_code = s.product_code and 
+  g.fiscal_year = get_fisical_year(s.date)
+where 
+customer_code = 90002002  and 
+get_fisical_year(date) = 2021 ;
+
+
+##
+explain  analyze
+SELECT s.date, s.product_code, p.product,p.variant,s.sold_quantity , g.gross_price, round(g.gross_price*s.sold_quantity) 
+as gross_price_total,pre.pre_invoice_discount_pct
+FROM gdb0041.fact_sales_monthly s 
+join dim_product p 
+  on p.product_code = s.product_code
+join fact_gross_price g 
+  on
+    g.product_code = s.product_code and 
+    g.fiscal_year = get_fisical_year(s.date)
+join fact_pre_invoice_deductions  pre 
+  on 
+    pre.customer_code = s.customer_code and
+    pre.fiscal_year = get_fisical_year(s.date)
+
+where 
+  s.customer_code = 90002002 and 
+  get_fisical_year(date) = 2021 ;
+
+
+# Optimization 1
+explain analyze
+SELECT s.date, s.product_code,s.customer_code, p.product,p.variant,s.sold_quantity ,
+ g.gross_price, round(g.gross_price*s.sold_quantity) as gross_price_total,
+ pre.pre_invoice_discount_pct
+FROM gdb0041.fact_sales_monthly s 
+join dim_dates  dt 
+   on dt.calender_date = s.date  
+ 
+join dim_product p 
+   on p.product_code = s.product_code
+
+join fact_gross_price g 
+   on
+    g.product_code = s.product_code and 
+    g.fiscal_year = dt.fiscal_year
+join fact_pre_invoice_deductions  pre 
+   on 
+     pre.customer_code = s.customer_code and
+     pre.fiscal_year = dt.fiscal_year
+       
+where 
+
+dt.fiscal_year = 2021 ;
+
+
+# Optimization 2
+explain analyze
+SELECT s.date, s.product_code,s.customer_code,s.fiscal_year, p.product,p.variant,s.sold_quantity , g.gross_price, round(g.gross_price*s.sold_quantity) 
+as gross_price_total, pre.pre_invoice_discount_pct
+FROM gdb0041.fact_sales_monthly s 
+ 
+join dim_product p 
+   on p.product_code = s.product_code
+
+join fact_gross_price g 
+   on
+    g.product_code = s.product_code and 
+    g.fiscal_year = s.fiscal_year
+join fact_pre_invoice_deductions  pre 
+   on 
+     pre.customer_code = s.customer_code and
+     pre.fiscal_year = s.fiscal_year
+       
+where 
+
+s.fiscal_year = 2021 ;
+
+
+# net_invoice_sales
+with cte1 as (SELECT s.date, s.product_code,s.customer_code,s.fiscal_year, p.product,p.variant,s.sold_quantity , g.gross_price, round(g.gross_price*s.sold_quantity) 
+as gross_price_total, pre.pre_invoice_discount_pct
+FROM gdb0041.fact_sales_monthly s 
+ 
+join dim_product p 
+   on p.product_code = s.product_code
+
+join fact_gross_price g 
+   on
+    g.product_code = s.product_code and 
+    g.fiscal_year = s.fiscal_year
+join fact_pre_invoice_deductions  pre 
+   on 
+     pre.customer_code = s.customer_code and
+     pre.fiscal_year = s.fiscal_year
+       
+where 
+s.fiscal_year = 2021 )
+select *, (gross_price_total - gross_price_total*pre_invoice_discount_pct) as net_invoice_sales from cte1;
+
+## Create the view `sales_preinv_discount` and store all the data in like a virtual table
+
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `sales_preinv_discount` AS
+    SELECT 
+        `s`.`date` AS `date`,
+        `s`.`product_code` AS `product_code`,
+        `c`.`market` AS `market`,
+        `c`.`region` AS `region`,
+        `c`.`customer` AS `customer`,
+        `s`.`customer_code` AS `customer_code`,
+        `s`.`fiscal_year` AS `fiscal_year`,
+        `p`.`product` AS `product`,
+        `p`.`variant` AS `variant`,
+        `s`.`sold_quantity` AS `sold_quantity`,
+        `g`.`gross_price` AS `gross_price`,
+        ROUND((`g`.`gross_price` * `s`.`sold_quantity`),
+                0) AS `gross_price_total`,
+        `pre`.`pre_invoice_discount_pct` AS `pre_invoice_discount_pct`
+    FROM
+        ((((`fact_sales_monthly` `s`
+        JOIN `dim_customer` `c` ON ((`s`.`customer_code` = `c`.`customer_code`)))
+        JOIN `dim_product` `p` ON ((`p`.`product_code` = `s`.`product_code`)))
+        JOIN `fact_gross_price` `g` ON (((`g`.`product_code` = `s`.`product_code`)
+            AND (`g`.`fiscal_year` = `s`.`fiscal_year`))))
+        JOIN `fact_pre_invoice_deductions` `pre` ON (((`pre`.`customer_code` = `s`.`customer_code`)
+            AND (`pre`.`fiscal_year` = `s`.`fiscal_year`))));
+            
+## Now use the view insted of common table expression(CTE)
+##Now generate net_invoice_sales using the above created view "sales_preinv_discount"
+SELECT *,
+(gross_price_total - pre_invoice_discount_pct*gross_price_total) as net_invoice_sales
+	FROM sales_preinv_discount;
+
+## There are two type of deduction i.e. discounts_pct and other_deductions_pct in fact_post_invoice_deductions table
+-- Now calculate total_post_invoice_discount_pct
+select *, (1- pre_invoice_discount_pct) * gross_price_total  as net_invoice_sales ,
+(po.discounts_pct + po.other_deductions_pct) as post_invoice_discount_pct
+from sales_preinv_discount s
+join fact_post_invoice_deductions po 
+  on s.date = po.date and
+  s.product_code  = po.product_code and
+  s.customer_code  = po.customer_code;
+-- Now Create a view for post invoice deductions ie.(total_post_invoice_discount_pct) : `sales_postinv_discount`
+## Now Create a report for net sales
+select *, (net_invoice_sales - post_invoice_discount_pct * net_invoice_sales) as net_sales
+from sales_postinv_discount;
+
+##-- Finally creating the view `net_sales` which inbuiltly include all the previous created view and gives the final result
+
+## Exercise
+CREATE  VIEW `gross_sales_new` AS
+	SELECT 
+		s.date,
+		s.fiscal_year,
+		s.customer_code,
+		c.customer,
+        c.region,
+		c.market,
+		s.product_code,
+		p.product, p.variant,
+		s.sold_quantity,
+		g.gross_price as gross_price_per_item,
+		round(s.sold_quantity*g.gross_price,2) as gross_price_total
+	from fact_sales_monthly s
+	join dim_product p
+	on s.product_code=p.product_code
+	join dim_customer c
+	on s.customer_code=c.customer_code
+	join fact_gross_price g
+	on g.fiscal_year=s.fiscal_year
+	and g.product_code=s.product_code;
+
+
+#### NOW WE WILL ANSWAR ALL AD-HOC QURIES
+
+## Top Markets and Customers 
+
+SELECT 
+	market, 
+	round(sum(net_sales)/1000000,2) as net_sales_mln
+	FROM net_sales
+	where fiscal_year=2021
+	group by market
+    order by net_sales_mln desc
+    limit 5;
+    
+# Now create a stored procedure to get top  n  markets
+
+SELECT 
+	market, 
+	round(sum(net_sales)/1000000,2) as net_sales_mln
+	FROM net_sales
+	where fiscal_year=2021
+	group by market
+    order by net_sales_mln desc
+    limit 5;
+
+# Then create stored procedure to get top customer for a given year
+SELECT 
+    customer,
+	round(sum(net_sales)/1000000,2) as net_sales_mln
+	FROM net_sales n
+    join dim_customer c
+    on n.customer_code = c.customer_code
+	where fiscal_year=2021
+	group by c.customer
+    order by net_sales_mln desc;
+
+ # create stored procedure to get top product for a given year i.e. get_top_n_products_by_net_sales
+ select
+		product,
+		round(sum(net_sales)/1000000,2) as net_sales_mln
+	from net_sales 
+	where fiscal_year=2021
+	group by product
+	order by net_sales_mln desc;
+    
+    
+##-- find out customer wise net sales percentage contribution 
+
+with cte1 as ( select 
+  s.customer, round(sum(net_sales)/1000000 , 2) as net_sales_mln
+  from net_sales s
+  join dim_customer c
+     on s.customer_code = c.customer_code
+     where s.fiscal_year = 2021
+     group by customer)
+     
+select *, 
+   net_sales_mln*100/sum(net_sales_mln) over() as pct_net_sales
+   from cte1
+   order by net_sales_mln desc;
+
+
+##-- find out region wise net sales percentage contribution 
+with cte1 as ( select 
+  region, round(sum(net_sales)/1000000 , 2) as net_sales_mln
+  from net_sales s
+  join dim_customer c
+     on s.customer_code = c.customer_code
+     where s.fiscal_year = 2021
+     group by region)
+     
+select *, 
+   net_sales_mln*100/sum(net_sales_mln) over() as pct_net_sales
+   from cte1
+   order by net_sales_mln desc;
+## --find region and customer  wise net sales percentage
+with cte1 as ( select 
+  net_sales.customer,
+  net_sales.region, round(sum(net_sales)/1000000 , 2) as net_sales_mln
+  from net_sales 
+
+     where net_sales .fiscal_year = 2021
+     group by net_sales.customer,net_sales.region
+   )
+     
+select *, 
+   net_sales_mln*100/sum(net_sales_mln) over(partition by region) as pct_share_region
+   from cte1
+   order by region,net_sales_mln desc;
+   
+
+## Find out top n products from each division by total quantity sold in a given financial year
+select
+ 
+ p.division, p.product, sum(sold_quantity) as total_qty
+  from fact_sales_monthly  s
+  join dim_product  p
+  on s.product_code = p.product_code
+  where fiscal_year = 2021
+  group by p.product,p.division;
+  
+
+with cte1 as 
+		(select
+                    p.division,
+                     p.product,
+                     sum(sold_quantity) as total_qty
+                from fact_sales_monthly s
+                join dim_product p
+                      on p.product_code=s.product_code
+                where fiscal_year=2021
+                group by p.division,p.product),
+           cte2 as 
+	        (select 
+                     *,
+                     dense_rank() over (partition by division order by total_qty desc) as drnk
+                from cte1)
+	select * from cte2 where drnk<=3;
+-- Now Create stored procedure for the above query to get  `get_top_n_products_per_division_by_qty_sold`
+  with cte1 as (
+		   select
+                       p.division,
+                       p.product,
+                       sum(sold_quantity) as total_qty
+                   from fact_sales_monthly s
+                   join dim_product p
+                       on p.product_code=s.product_code
+                   where fiscal_year=in_fiscal_year
+                   group by p.product, p.division),            
+             cte2 as (
+		   select 
+                        *,
+                        dense_rank() over (partition by division order by total_qty desc) as drnk
+                   from cte1)
+	     select * from cte2 where drnk <= in_top_n;
+
+## Find top n markets in every region by their gross sales amount in a given financial year.
+with cte1 as (
+		select
+			c.market,
+			c.region,
+			round(sum(gross_price_total)/1000000,2) as gross_sales_mln
+			from gross_sales s
+			join dim_customer c
+			on c.customer_code=s.customer_code
+			where fiscal_year=2021
+			group by market,region
+			order by gross_sales_mln desc
+		),
+		cte2 as (
+			select *,
+			dense_rank() over(partition by region order by gross_sales_mln desc) as drnk
+			from cte1
+		)
+	select * from cte2 where drnk<=2;
+-- Now Create stored procedure for the above query to get  top n markets in every region by their gross sales amount in a given financial year i.e. 'get_top_n_market_per_region_by_gross_sales'.
+with cte1 as (
+		select
+			c.market,
+			c.region,
+			round(sum(gross_price_total)/1000000,2) as gross_sales_mln
+			from gross_sales s
+			join dim_customer c
+			on c.customer_code=s.customer_code
+			where fiscal_year=2021
+			group by market,region
+			order by gross_sales_mln desc
+		),
+		cte2 as (
+			select *,
+			dense_rank() over(partition by region order by gross_sales_mln desc) as drnk
+			from cte1
+		)
+	select * from cte2 where drnk<=5;
