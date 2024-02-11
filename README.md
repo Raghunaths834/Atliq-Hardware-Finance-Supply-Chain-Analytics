@@ -1,4 +1,4 @@
-# Atliq-Hardware-Finance-Supply-Chain-Analytics-Using-MySQL
+# Atliq-Hardware-Finance-Supply-Chain-Analytics
 
 ## Overview
 
