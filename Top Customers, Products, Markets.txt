@@ -168,15 +168,6 @@ from sales_postinv_discount;
 #### NOW WE WILL ANSWAR ALL AD-HOC QURIES
 
 ## Top Markets and Customers 
--- 
- 
- 
-select 
-market, 
-sum(net_sales) from net_sales
- where fiscal_year = 2021 
- group by market limit 5;
-
 
 SELECT 
 	market, 
