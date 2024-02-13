@@ -3,9 +3,7 @@
 ## Overview
 
 
-Welcome to the Atliq Hardware Analytics Project! This project is designed to transform Atliq Hardware’s operational landscape by establishing a robust framework for generating actionable insights. The insights are derived from a comprehensive analysis of key data sources, including customer behavior, transaction history, product trends, and regional dynamics.
-
-By harnessing the power of data-driven insights, Atliq Hardware aims to revolutionize its decision-making process. These insights not only identify emerging patterns and trends but also empower the company to make strategic moves aligned with market demands and consumer preferences. This data-centric strategy forms a virtuous cycle, ensuring decisions are grounded in empirical evidence, minimizing risks, and maximizing opportunities.
+Welcome to the Atliq Hardware Analytics Project! This project aims to improve Atliq Hardware's operations by providing actionable insights. The insights are derived from a comprehensive analysis of key data sources, including customer behavior, transaction history, product trends, and regional dynamics. These insights help the company understand trends and make strategic decisions that match market demands and consumer preferences.
 
 ## Atliq Business Model
 
@@ -49,7 +47,7 @@ Atliq initiates its business/financial year in September, aligning with high sal
 ## Problem Statements
 
 
-The project addresses various problem statements, including generating sales reports, preparing financial statements, and creating visualizations,creating user define function,creating stored procedures to automate the process. 
+The project addresses various ad hoc requests, such as generating sales reports, preparing financial statements, creating visualizations, and automating processes through user-defined functions and stored procedures
 
 # Task
 
