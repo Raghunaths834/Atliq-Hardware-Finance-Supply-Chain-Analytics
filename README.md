@@ -73,10 +73,13 @@ The project addresses various ad hoc requests, such as generating sales reports,
 
      <img src="https://github.com/Raghunaths834/Atliq-Hardware-Finance-Supply-Chain-Analytics/assets/119792506/ff977695-7324-4602-b624-00b1f8a03256.png" alt="Croma yearly sales" height="300" width="600">
 
-     <img src="https://github.com/Raghunaths834/Atliq-Hardware-Finance-Supply-Chain-Analytics/assets/119792506/ff977695-7324-4602-b624-00b1f8a03256.png" alt="Croma yearly sales" height="300" width="600">
+     <img src="https://github.com/Raghunaths834/Atliq-Hardware-Finance-Supply-Chain-Analytics/assets/119792506/2ae3b58f-1e9c-407d-879a-1117fce23617.png" alt="Croma yearly sales" height="300" width="600">
 
 
-![Uploading top market pie chart.png…]()
+
+
+    
+
 
 
 5. Automated Report Generation for Gross Sales: Create stored procedures for generating monthly and yearly gross sales reports for any customer.
