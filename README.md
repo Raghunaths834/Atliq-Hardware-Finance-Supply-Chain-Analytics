@@ -90,11 +90,11 @@ The project addresses various ad hoc requests, such as generating sales reports,
 
 1. Top and Bottom 5 Reports: Generate reports on the top and bottom 5 markets, products, and customers by net sales.
 
-2. Bar Chart for Top 10 Markets (% Net Sales): Prepare a bar chart report for FY=2021 for the top 10 markets by % net sales.
+3. Bar Chart for Top 10 Markets (% Net Sales): Prepare a bar chart report for FY=2021 for the top 10 markets by % net sales.
 
-3. Pie Chart for Net Sales% Breakdown by Region: Create a pie chart for the net sales% breakdown of customers region-wise (APAC, EU, LTAM).
+4. Pie Chart for Net Sales% Breakdown by Region: Create a pie chart for the net sales% breakdown of customers region-wise (APAC, EU, LTAM).
 
-4. Top N Products in Each Division by Quantity Sold: Use dense rank function to get the top N products in each division by quantity sold.
+5. Top N Products in Each Division by Quantity Sold: Use dense rank function to get the top N products in each division by quantity sold.
 
 ## Supply Chain Analytics:
 1. Forecast Accuracy Report
