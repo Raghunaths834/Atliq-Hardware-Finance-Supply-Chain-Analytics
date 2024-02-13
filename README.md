@@ -71,7 +71,7 @@ The project addresses various ad hoc requests, such as generating sales reports,
 
      ![Croma yearly sales](https://github.com/Raghunaths834/Atliq-Hardware-Finance-Supply-Chain-Analytics/assets/119792506/ff977695-7324-4602-b624-00b1f8a03256.png)
 
-     <img src="https://github.com/Raghunaths834/Atliq-Hardware-Finance-Supply-Chain-Analytics/assets/119792506/ff977695-7324-4602-b624-00b1f8a03256.png" alt="Croma yearly sales" height="300" width="500">
+     <img src="https://github.com/Raghunaths834/Atliq-Hardware-Finance-Supply-Chain-Analytics/assets/119792506/ff977695-7324-4602-b624-00b1f8a03256.png" alt="Croma yearly sales" height="300" width="600">
 
 
 
