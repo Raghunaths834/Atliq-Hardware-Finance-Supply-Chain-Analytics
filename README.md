@@ -16,10 +16,10 @@ Atliq operates in the hardware industry, selling gadgets to various customers li
 ## Database Structure
 
 
-![1_5p-2ZW1BTo2sNFsPhEKvsg](https://github.com/sahooraghunath/Atliq-Hardware-Finance-Supply-Chain-Analytics-Using-MySQL/assets/119792506/34a8956b-d352-441a-8687-35f41b6efb22)
+![1_5p-2ZW1BTo2sNFsPhEKvsg](https://github.com/sahooraghunath/Atliq-Hardware-Finance-Supply-Chain-Analytics-Using-MySQL/assets/119792506/34a8956b-d352-441a-8687-35f41b6efb22 | width=100)
 
 
-![1_Sb7W97tpW3NvscggmKqWLA](https://github.com/sahooraghunath/Atliq-Hardware-Finance-Supply-Chain-Analytics-Using-MySQL/assets/119792506/87b97ea4-2542-46d6-b1e6-338d916c7529)
+![1_Sb7W97tpW3NvscggmKqWLA](https://github.com/sahooraghunath/Atliq-Hardware-Finance-Supply-Chain-Analytics-Using-MySQL/assets/119792506/87b97ea4-2542-46d6-b1e6-338d916c7529 | width=100)
 
 The comprehensive infrastructure of the Atliq Hardware initiative encompasses a multi-faceted framework, incorporating essential components such as Customer, Products, Sales, pre and post-invoice deductions, and manufacturing tables. Key tables include:
 
